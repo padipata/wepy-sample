@@ -1,26 +1,19 @@
 <style lang="less">
-  .container{
-    .sreah{
-      width:100%;
-      height: 70rpx;
-      background:rgba(255,255,255,1);
-      box-shadow: 0 1rpx 1rpx 0rpx rgba(207,207,207,1)
-    }
-  }
+
 </style>
 <template>
   <view class="container">
-    <view class="sreah"></view>
+    个人中心
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
 
-  export default class index extends wepy.page {
+  export default class Personal extends wepy.page {
     //页面配置
     config = {
-      navigationBarTitleText: '深圳土地公'
+      navigationBarTitleText: '生鲜物流'
     };
 
     //声明页面中将要使用到的组件

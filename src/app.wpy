@@ -1,70 +1,100 @@
 <style lang="less">
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
+  page{
+    background-color: #f5f5f5;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
 </style>
 
 <script>
-import wepy from 'wepy'
-import 'wepy-async-function'
+  import wepy from 'wepy'
+  import 'wepy-async-function'
 
 
-export default class extends wepy.app {
-  config = {
-    pages: [
-      'pages/index'
-    ],
-    window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+  export default class extends wepy.app {
+    config = {
+      pages: [
+        'pages/index',
+        'pages/goods/Good',
+        'pages/personal/Personal',
+        'pages/shopping-cart/ShoppingCart'
+      ],
+      window: {
+        backgroundTextStyle: 'light',
+        navigationBarBackgroundColor: '#67BD45',
+        navigationBarTitleText: 'WeChat',
+        navigationBarTextStyle: '#fff',
+        backgroundColor:'#f5f5f5'
+      },
+      tabBar: {
+        list: [{
+          "pagePath": "pages/index",
+          "text": "首页",
+          "iconPath":"img/ic_home_home_tab_normal.png",
+          "selectedIconPath":"img/ic_home_home_tab_light.png"
+        }, {
+          "pagePath": "pages/goods/Good",
+          "text": "分类",
+          "iconPath":"img/ic_home_classtify_tab_normal.png",
+          "selectedIconPath":"img/ic_home_classtify_tab_light.png"
+        }, {
+          "pagePath": "pages/shopping-cart/ShoppingCart",
+          "text": "购物车",
+          "iconPath":"img/ic_home_shop_tab_normal.png",
+          "selectedIconPath":"img/ic_home_shop_tab_light.png"
+        }, {
+          "pagePath": "pages/personal/Personal",
+          "text": "个人中心",
+          "iconPath":"img/ic_home_mine_tab_normal.png",
+          "selectedIconPath":"img/ic_home_mine_tab_light.png"
+        }]
+      },
     }
-  }
 
-  globalData = {
-    userInfo: null
-  }
-
-  constructor () {
-    super()
-    this.use('requestfix');
-    this.use('promisify');
-  }
-
-  onLaunch() {
-    this.testAsync()
-  }
-
-  sleep (s) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('promise resolved')
-      }, s * 1000)
-    })
-  }
-
-  async testAsync () {
-    const data = await this.sleep(3)
-    console.log(data)
-  }
-
-  getUserInfo(cb) {
-    const that = this
-    if (this.globalData.userInfo) {
-      return this.globalData.userInfo
+    globalData = {
+      userInfo: null
     }
-    wepy.getUserInfo({
-      success (res) {
-        that.globalData.userInfo = res.userInfo
-        cb && cb(res.userInfo)
+
+    constructor() {
+      super()
+      this.use('requestfix');
+      this.use('promisify');
+    }
+
+    onLaunch() {
+      this.testAsync()
+    }
+
+    sleep(s) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('promise resolved')
+        }, s * 1000)
+      })
+    }
+
+    async testAsync() {
+      const data = await this.sleep(3)
+      console.log(data)
+    }
+
+    getUserInfo(cb) {
+      const that = this
+      if (this.globalData.userInfo) {
+        return this.globalData.userInfo
       }
-    })
+      wepy.getUserInfo({
+        success(res) {
+          that.globalData.userInfo = res.userInfo
+          cb && cb(res.userInfo)
+        }
+      })
+    }
   }
-}
 </script>
