@@ -1,16 +1,220 @@
 <style lang="less">
-  .container{
-    .sreah{
-      width:100%;
-      height: 70rpx;
-      background:rgba(255,255,255,1);
-      box-shadow: 0 1rpx 1rpx 0rpx rgba(207,207,207,1)
+  .container {
+    .sreah {
+      width: 100%;
+      height: ~"70rpx";
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 ~"1rpx" ~"1rpx" ~"0rpx" rgba(207, 207, 207, 1);
+      .img {
+        width: ~"117rpx";
+        height: ~"33rpx";
+        margin-top: ~"23rpx";
+        margin-left: ~"233rpx";
+        margin-right: ~"10rpx";
+        float: left;
+      }
+      .site_title {
+        font-size: ~"28rpx";
+        font-family: PingFangSC-Regular;
+        color: rgba(20, 20, 20, 1);
+        line-height: ~"70rpx";
+        float: left;
+      }
+      .sreah_img {
+        width: ~"30rpx";
+        height: ~"30rpx";
+        float: right;
+        margin-top: ~"21rpx";
+        margin-right: ~"21rpx";
+      }
+    }
+    .swiper {
+      width: 100%;
+      height: ~"280rpx";
+      image {
+        width: 100%;
+        height: 100%;
+      }
+      .wx-swiper-dot {
+        width: ~"26rpx";
+        display: inline-flex;
+        height: ~"3rpx";
+        justify-content: space-between;
+      }
+      .wx-swiper-dot::before {
+        content: '';
+        flex-grow: 1;
+        background: rgba(255, 255, 255, 0.8);
+      }
+      .wx-swiper-dot-active::before {
+        background: #67BD45;
+      }
+    }
+    .hint {
+      width: 100%;
+      height: ~"60rpx";
+      line-height: ~"60rpx";
+      background: rgba(255, 248, 220, 1);
+      .hint_img {
+        width: ~"95rpx";
+        height: ~"25rpx";
+        margin-left: ~"20rpx";
+        display: inline-block;
+      }
+      .hint_text {
+        font-size: ~"24rpx";
+        font-family: PingFangSC-Regular;
+        color: rgba(51, 51, 51, 1);
+        display: inline-block;
+        margin-left: ~"80rpx";
+        line-height: ~"60rpx";
+      }
+    }
+    .main {
+      width: ~"750rpx";
+      height: ~"298rpx";
+      background: rgba(255, 255, 255, 1);
+      .activity {
+        width: ~"710rpx";
+        height: ~"250rpx";
+        margin: auto;
+        position: relative;
+        right: 0;
+        left: 0;
+        margin-top: ~"24rpx";
+        .top {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: ~"340rpx";
+          height: ~"120rpx";
+          border-radius: ~"5rpx";
+        }
+        .bottom {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: ~"340rpx";
+          height: ~"120rpx";
+          border-radius: ~"5rpx";
+        }
+        .right {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: ~"358rpx";
+          height: ~"250rpx";
+          border-radius: ~"5rpx";
+        }
+      }
+    }
+    .today {
+      width: 100%;
+      height: ~"412rpx";
+      background: rgba(255, 255, 255, 1);
+      margin-top: ~"20rpx";
+      .title {
+        width: 100%;
+        height: ~"62rpx";
+        .img {
+          width: ~"31rpx";
+          height: ~"36rpx";
+          margin-left: ~"21rpx";
+          margin-top: ~"10rpx";
+          float: left;
+        }
+        .text{
+          font-size:~"26rpx";
+          font-family:PingFangSC-Medium;
+          color:rgba(20,20,20,1);
+          margin-left: ~"20rpx";
+          float: left;
+          margin-top: ~"15rpx";
+        }
+      }
+      .block{
+        width: 100%;
+        height: ~"303rpx";
+        .good{
+          display: inline-block;
+          width:~"230rpx";
+          height:100%;
+          margin-left: ~"30rpx";
+          background-color: #000;
+        }
+      }
+    }
+    #green{
+      width:~"230rpx";
+      height:~"100rpx";
+      background-color: antiquewhite;
+      margin-left: ~"30rpx";
     }
   }
 </style>
 <template>
   <view class="container">
-    <view class="sreah"></view>
+    <!--顶部-->
+    <view class="sreah">
+      <image class="img" src="http://video.tudgo.com/pic_home_nav.png"/>
+      <view class="site_title">保利上城区</view>
+      <image class="sreah_img" src="http://video.tudgo.com/ic_home_search.png"/>
+    </view>
+    <!--轮播-->
+    <swiper class="swiper" indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoplay}}" indicatorActiveColor="{{indicatorActiveColor}}" circular="{{circular}}"
+            interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--温馨提示-->
+    <view class="hint">
+      <image class="hint_img" src="http://video.tudgo.com/pic_home_bulletin.png"/>
+      <view class="hint_text">请于每周二，每周五下午到所在小区提取货物</view>
+    </view>
+    <!--活动-->
+    <view class="main">
+      <view class="activity">
+        <image class="top" src="http://video.tudgo.com/pic_home_new.png"/>
+        <image class="bottom" src="http://video.tudgo.com/pic_home_tiyan.png"/>
+        <image class="right" src="http://video.tudgo.com/pic_home_today.png"/>
+      </view>
+    </view>
+    <!--今日精选-->
+    <view class="today">
+      <view class="title">
+        <image class="img" src="http://video.tudgo.com/%E7%81%AB.png"/>
+        <view class="text">今日精选</view>
+      </view>
+      <scroll-view scroll-x="{{x}}" class="block" style="display: flex;white-space: nowrap;">
+        <view style="max-width:750rpx;height: 100%;">
+          <!--每一个商品-->
+          <view class="good">
+
+          </view>
+          <!--每一个商品-->
+          <view class="good">
+
+          </view>
+          <!--每一个商品-->
+          <view class="good">
+
+          </view>
+          <!--每一个商品-->
+          <view class="good">
+
+          </view>
+
+        </view>
+
+      </scroll-view>
+    </view>
+
+
+
   </view>
 </template>
 
@@ -27,15 +231,27 @@
     components = {};
 
     //页面模板中绑定的数据
-    data = {};
+    data = {
+      x:     imgUrls: [
+        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      ],
+      indicatorDots: true,
+      autoplay: true,
+      interval: 2000,
+      duration: 500,
+      indicatorActiveColor: "#67BD45",
+      circular: true,
+    };
 
     //事件处理函数(集中保存在methods对象中)
     methods = {};
 
+
     //页面的生命周期函数
     onLoad() {
       let self = this
-
     }
   }
 </script>
