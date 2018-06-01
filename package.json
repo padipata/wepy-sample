@@ -1,7 +1,7 @@
 {
   "name": "wxapp-fresh",
   "version": "0.0.1",
-  "description": "生鲜配送小程序",
+  "description": "wepy小程序",
   "main": "dist/app.js",
   "scripts": {
     "dev": "wepy build --watch",
@@ -14,7 +14,7 @@
     "module-a": false,
     "./src/components/list": "./src/components/wepy-list.wpy"
   },
-  "author": "dankal",
+  "author": "yipage",
   "license": "MIT",
   "dependencies": {
     "wepy": "^1.6.0",

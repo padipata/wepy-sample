@@ -224,7 +224,7 @@
   export default class index extends wepy.page {
     //页面配置
     config = {
-      navigationBarTitleText: '深圳土地公'
+      navigationBarTitleText: '首页'
     };
 
     //声明页面中将要使用到的组件
